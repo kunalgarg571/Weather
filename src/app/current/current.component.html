@@ -1,0 +1,23 @@
+<div class="input-group mb-3">
+  <input type="text" class="form-control" [(ngModel)]="city" placeholder="Enter City" aria-label="Recipient's username"
+    aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button (click)="WeatherForecast()" class="btn btn-primary ">Search</button>
+  </div>
+</div>
+<div *ngIf="myWeather" class="container">
+  <h1>{{myWeather.cityname}},{{myWeather.country}}</h1>
+  <h2>{{myWeather.date|date:'full'}}</h2>
+  <h2>Pressure : {{myWeather.pressure}} mb</h2>
+  <h2>Humidity : {{myWeather.humidity}}%</h2>
+  <h2>Wind : {{myWeather.wind}}mph SW</h2>
+  <h2>{{(myWeather.temp-273).toPrecision(4)}}&deg;</h2>
+  <div class="img">
+    <h3>{{myWeather.weatherKind}}
+      <img src="http://openweathermap.org/img/w/{{myWeather.icon}}.png">
+    </h3>
+  </div>
+
+  <h4>Min: {{(myWeather.tempMin-273).toPrecision(4)}}&deg;</h4>
+  <h4>Max: {{(myWeather.tempMax-273).toPrecision(4)}}&deg;</h4>
+</div>

@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="city" placeholder="Enter City.."
+        aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-primary " (click)="Forecast()" type="button">Search</button>
+    </div>
+</div>
+<div *ngIf="flag" class="container">
+    <p class="font-weight-bold text-center display-3 ">{{foreWeather[0].cityname}},{{foreWeather[0].country}}</p>
+    <div class="contanier">
+        <div class="row">
+            <div class="col-sm">
+                Date
+            </div>
+            <div class="col-sm">
+                Curr_temp
+            </div>
+            <div class="col-sm">
+                Range
+            </div>
+            <div class="col-sm">
+                Description
+            </div>
+        </div>
+        <br>
+        <div *ngFor="let fw of foreWeather">
+            <div class="row">
+                <div class="col-sm">
+                    {{fw.date|date:'fullDate'}}
+                </div>
+                <div class="col-sm">
+                    {{(fw.temp-273).toPrecision(4)}}&deg;
+                </div>
+                <div class="col-sm">
+                    ({{(fw.tempMin-273).toPrecision(4)}}&deg;-{{(fw.tempMax-273).toPrecision(4)}}&deg;)
+                </div>
+                <div class="col-sm">
+                    {{fw.weatherKind}}<img src="http://openweathermap.org/img/w/{{fw.icon}}.png">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
